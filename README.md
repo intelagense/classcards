@@ -1,7 +1,7 @@
 # Class Cards
 A weekly schedule with a handdrawn look and pixel graphics.
 
-![Screenshot](public/images/classCards.png)
+![Animated screenshot. Days of the week separated into day cards segmented by hours.](public/images/animatedscreenshot.gif)
 
 ## How It's Made:
 
@@ -14,4 +14,4 @@ A weekly schedule with a handdrawn look and pixel graphics.
 - Add ability to actually host and run the thing outside of localhost
 
 ## Original concept art:
-![Screenshot](public/images/whiteboard.png)
+![Simple whiteboard with muted colors. ](public/images/whiteboard.png)
