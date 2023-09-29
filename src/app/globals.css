@@ -89,10 +89,8 @@ body {
 }
 
 body {
-  min-height: 100vh;
+  line-height: 2;
   color: rgb(var(--foreground-rgb));
-  background: url(./data/bg.png);
-  background-size: cover;
 }
 
 a {

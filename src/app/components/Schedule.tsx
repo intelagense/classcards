@@ -2,16 +2,57 @@
 
 import React, { useEffect, useState } from 'react';
 import { weekdays } from '@/app/data/seedData';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface ScheduleData {
     dayName: string;
     hours: Record<string, string | null>;
 }
 
+
+const jumpAnimation = keyframes`
+    0% { background-position: -16px -16px; }
+    20% { background-position: -32px -16px; }
+    40% { background-position: -48px -16px; }
+    60% { background-position: -64px -16px; }
+    80% { background-position: -80px -16px; }
+    100% { background-position: -96px -16px; }
+`;
+
+const idleAnimation = keyframes`
+    0% { background-position: -96px -48px; }
+    80% { background-position: -80px -48px; }
+`;
+const IdleGuy = styled.div`
+    align-self: center;
+    width: 16px;
+    height: 16px; 
+    background-image: url('images/robotguy.png');
+    background-position: -16px -16px; /* Initial position */
+    animation: ${idleAnimation} 5s steps(1) infinite; /* Animation with steps(1) */
+    transform: scaleX(-1) scale(4); /* Horizontal flip and scale up three times */
+    filter: hue-rotate(150deg); /* Hue shift effect */
+    image-rendering: pixelated;
+`;
+const JumpGuy = styled.div`
+    align-self: center;
+    width: 16px;
+    height: 16px;
+    background-image: url('images/robotguy.png');
+    background-position: -16px -16px; /* Initial position */
+    animation: ${jumpAnimation} 1s steps(1) infinite; /* Animation with steps(1) */
+    transform: scale(4);
+    image-rendering: pixelated;
+`;
+
+const StyledH2 = styled.h2`
+    color: orangered;
+    font-size: 2rem;
+    padding: 0 2rem;
+`;
 const StyledDiv = styled.div`
     background: aliceblue;
-    padding:0.5rem 0.5rem;
+    padding:0.5rem 1rem;
     margin:0 0.5rem;
     border-top-left-radius: 255px 15px;
     border-top-right-radius: 15px 225px;
@@ -23,10 +64,12 @@ const Wrapper = styled.section`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 25px 0 75px;
 `;
 const StyledUl = styled.ul`
     list-style: none;
 `;
+
 
 export default function Schedule() {
     const [scheduleDataState, setScheduleDataState] = useState<ScheduleData[]>([]);
@@ -34,10 +77,10 @@ export default function Schedule() {
 
     useEffect(() => {
         const storedData = localStorage.getItem('scheduleData');
-        console.log('Stored Data:', storedData);
+        // console.log('Stored Data:', storedData);
 
         // change to enable local storage
-        if (storedData) {
+        if (!storedData) {
             // Initialize scheduleDataState with weekdays
             const weekdaysData: ScheduleData[] = weekdays.map((weekday: any) => ({
                 dayName: weekday.dayName,
@@ -61,17 +104,19 @@ export default function Schedule() {
     const formattedDate = today.toLocaleDateString();
 
     return (
-        <StyledDiv>
+        <div>
 
             <Wrapper>
                 <StyledDiv>
-                    <h1>Class Cards</h1>
+                    <StyledH2>Class Cards</StyledH2>
                 </StyledDiv>
+                <JumpGuy></JumpGuy>
+                <div></div>
+                <IdleGuy></IdleGuy>
                 <StyledDiv>
-                    <h2>{formattedDate}</h2>
+                    <StyledH2>{formattedDate}</StyledH2>
                 </StyledDiv>
             </Wrapper>
-            {/* {time.split(":00")[0] + time.split(":00")[1]}:  */}
             <Wrapper>
                 {isLoading ? (
                     <p>Loading... 😭</p>
@@ -103,7 +148,10 @@ export default function Schedule() {
                         </StyledDiv>
                     ))
                 )}
+
             </Wrapper>
-        </StyledDiv>
+
+
+        </div>
     );
 }
