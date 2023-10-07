@@ -1,5 +1,6 @@
 # Class Cards
-A weekly schedule with a hand drawn look over pixel graphics.
+A weekly schedule with a hand-drawn look on top of pixel graphics.  
+🥈Place winner of the [Codédex September 2023 Monthly Challange ](https://www.codedex.io/community/monthly-challenge/september-2023) 🎉
 
 ![Animated screenshot. Days of the week are separated into day cards segmented by hours.](public/images/animatedscreenshot.gif)
 
@@ -10,8 +11,9 @@ A weekly schedule with a hand drawn look over pixel graphics.
 ## TODO:
 
 - Add ability to edit schedule and store data in local storage
-- Optimize the site for mobile display
-- Add the ability to actually host and run the thing outside of localhost
+- Optimize the site further for mobile display
+- Add the ability to host and run outside of development
+- Modularize styled-components into files
 
 ## Original concept art:
 ![Simple whiteboard with muted colors. ](public/images/whiteboard.png)
